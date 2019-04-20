@@ -44,11 +44,6 @@ code {
 	padding: 12px 10px 12px 10px;
 }
 
-#container {
-	margin: 10px;
-	border: 1px solid #D0D0D0;
-	box-shadow: 0 0 8px #D0D0D0;
-}
 
 p {
 	margin: 12px 15px 12px 15px;
@@ -58,7 +53,6 @@ p {
 <body>
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
 	</div>
 </body>
 </html>
