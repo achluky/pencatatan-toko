@@ -56,7 +56,9 @@
                         <th>Harga/Satuan</th>
                         <th>Jumlah Barang</th>
                         <th>Harga Total</th>
+                        <?php if(isset($_GET['private']) and $_GET['private'] == 'karunia') {?>
                         <th>Margin Total</th>
+                        <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,14 +78,18 @@
                             <td><?php echo rupiah($row->harga)?></td>
                             <td><?php echo $row->jumlah?></td>
                             <td><?php echo rupiah($row->jumlah * $row->harga)?></td>
-                            <td><?php echo rupiah($row->jumlah * $row->margin)?></td>
+                            <?php if(isset($_GET['private']) and $_GET['private'] == 'karunia') {?>
+                              <td><?php echo rupiah($row->jumlah * $row->margin)?></td>
+                            <?php } ?>
                         </tr>
                         <?php } ?>
                         <tr>
                             <th colspan="4"></th>
                             <th><?php echo $jumlah?></th>
                             <th><?php echo rupiah($harga_tot)?></th>
-                            <th><?php echo rupiah($margin_tot)?></th>
+                            <?php if(isset($_GET['private']) and $_GET['private'] == 'karunia') {?>
+                              <th><?php echo rupiah($margin_tot)?></th>
+                            <?php } ?>
                         </tr>
                     </tbody>
                 </table>
