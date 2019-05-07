@@ -19,10 +19,15 @@ class Kuota extends CI_Controller {
 		$this->load->view('kuota-harga-tambah');
     }
     public function harg_save($harga, $harga_beli, $margin){
-        $data = array( 'harga' => $harga,'harga_beli' => $harga_beli, 'margin' => $margin );
-        if($this->db->insert('harga', $data)){
-            $data['status'] = 'succes';
-            echo json_encode($data);
+        if ($harga_beli+$margin == $harga){
+            $data = array( 'harga' => $harga,'harga_beli' => $harga_beli, 'margin' => $margin );
+            if($this->db->insert('harga', $data)){
+                $data['status'] = 'succes';
+                echo json_encode($data);
+            }else{
+                $data['status'] = 'error';
+                echo json_encode($data);
+            }
         }else{
             $data['status'] = 'error';
             echo json_encode($data);
@@ -55,7 +60,7 @@ class Kuota extends CI_Controller {
 		$this->load->view('kuota-daftar-tambah', $data);
     }
     public function daftar_save(){
-        if( $_POST['nama'] == '' || $_POST['kadaluarsa'] == '' || $_POST['stock'] == '' || $_POST['id_harga'] == ''){
+        if( $_POST['nama'] == '' || $_POST['stock'] == '' || $_POST['kadaluarsa'] == '' || $_POST['id_harga'] == ''){
             $data['status'] = 'error';
             echo json_encode($data);
         } else {
@@ -91,9 +96,9 @@ class Kuota extends CI_Controller {
         $data['stock_old'] = $stock_old;
 		$this->load->view('kuota-stock-ubah', $data);
     }
-    public function stock_save($id_barang, $stock, $stock_old){
+    public function stock_save($id_barang, $stock, $stock_old, $kadaluarsa){
         $this->db->trans_start();
-        $data = array( 'id_barang' => $id_barang,'stock' => $stock );
+        $data = array( 'id_barang' => $id_barang,'stock' => $stock, 'kadaluarsa' => $kadaluarsa );
         $this->db->insert('stock', $data);
         $this->db->query("update barang set stock=".($stock+$stock_old)." where id_barang=".$id_barang."");
         $this->db->trans_complete();

@@ -24,21 +24,13 @@
   <body>
 
     <div class="">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-left">
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>">Utama</a></li>
-            <li role="presentation" class="active"><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Kuota</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atm">ATM</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atk">ATK</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/foto_copy">Foto - Copy</a></li>
-          </ul>
-        </nav>
-      </div>
+
+    <?php $this->load->view('menu')?>
 
       <div class="row marketing">
         <div class="col-lg-12">
-            <p>Trx</p>
+            <p>Daftar Transaksi Toko<p>
+            <hr/>
             <form action="<?php echo $this->config->item('base_url') ?>index.php/kuota/trx">
             <div class="form-group">
                 <p>Filter</p>
@@ -47,7 +39,7 @@
             </div>
             </form>
             <div class="form-group">
-                <table class="table table-striped daftar_trx">
+                <table class="table table-striped daftar_barang">
                     <thead>
                         <tr>
                         <th>Tanggal</th>
@@ -63,35 +55,40 @@
                     </thead>
                     <tbody>
                         <?php 
-                        $jumlah =  0;
-                        $harga_tot =  0;
-                        $margin_tot =  0;
-                        foreach($trx -> result() as $row){
-                        $jumlah += $row->jumlah;
-                        $harga_tot += ($row->jumlah * $row->harga);
-                        $margin_tot += ($row->jumlah * $row->margin);
+                          $jumlah =  0;
+                          $harga_tot =  0;
+                          $margin_tot =  0;
+                          foreach($trx -> result() as $row){
+                            $jumlah += $row->jumlah;
+                            $harga_tot += ($row->jumlah * $row->harga);
+                            $margin_tot += ($row->jumlah * $row->margin);
                         ?>
-                        <tr>
-                            <td><?php echo $row->waktu?></td>
-                            <th><?php echo $row->id_barang?></th>
-                            <td><?php echo $row->nama?></td>
-                            <td><?php echo rupiah($row->harga)?></td>
-                            <td><?php echo $row->jumlah?></td>
-                            <td><?php echo rupiah($row->jumlah * $row->harga)?></td>
-                            <?php if(isset($_GET['private']) and $_GET['private'] == 'karunia') {?>
+                          <tr>
+                              <td><?php echo $row->waktu?></td>
+                              <th><?php echo $row->id_barang?></th>
+                              <td><?php echo $row->nama?></td>
+                              <td><?php echo rupiah($row->harga)?></td>
+                              <td><?php echo $row->jumlah?></td>
+                              <td><?php echo rupiah($row->jumlah * $row->harga)?></td>
+                              <?php if(isset($_GET['private']) and $_GET['private'] == 'karunia') {?>
                               <td><?php echo rupiah($row->jumlah * $row->margin)?></td>
-                            <?php } ?>
-                        </tr>
+                              <?php } ?>
+                          </tr>
                         <?php } ?>
+                    </tbody>
+                    <tfoot>
                         <tr>
-                            <th colspan="4"></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                             <th><?php echo $jumlah?></th>
                             <th><?php echo rupiah($harga_tot)?></th>
                             <?php if(isset($_GET['private']) and $_GET['private'] == 'karunia') {?>
-                              <th><?php echo rupiah($margin_tot)?></th>
+                            <th><?php echo rupiah($margin_tot)?></th>
                             <?php } ?>
                         </tr>
-                    </tbody>
+                    </tfoot>
                 </table>
                     
             </div>
@@ -100,22 +97,16 @@
       </div>
 
       <footer class="footer">
-        <ul class="nav nav-pills pull-left">
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Input Transaksi</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar">Daftar Barang</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/trx">Transaksi Kuota</a></li>
-        </ul>
       </footer>
 
     </div>
-
-
+    
     <script src="<?php echo $this->config->item('base_url') ?>js/jquery-3.3.1.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('base_url') ?>css/datatables.min.css"/>
     <script type="text/javascript" src="<?php echo $this->config->item('base_url') ?>js/datatables.min.js"></script>
     <script>
     $(document).ready( function () {
-        $('.daftar_trx').DataTable();
+        $('.daftar_barang').DataTable();
     } );
     </script>
     

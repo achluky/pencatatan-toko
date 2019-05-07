@@ -27,24 +27,15 @@
   <body>
 
     <div class="">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-left">
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>">Utama</a></li>
-            <li role="presentation" class="active"><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Kuota</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atm">ATM</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atk">ATK</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/foto_copy">Foto - Copy</a></li>
-          </ul>
-        </nav>
-      </div>
+
+        <?php $this->load->view('menu')?>
 
       <div class="row marketing">
         <div class="col-lg-12">
-          <p>Input Transaksi Kuota</p>
+          <p>Input Transaksi Barang</p>
             <div class="form-group">
                 <p>Barang</p>
-                <select class="barang selectpicker"  data-live-search="true" name="barang" require>
+                <select class="barang selectpicker form-control"  data-live-search="true" name="barang" require>
                     <option value="">- Pilih -</option>
                     <?php foreach($barang->result() as $row){?>
                     <option value="<?php echo $row->id_barang?>"><?php echo $row->nama?> -  <?php echo rupiah($row->harga)?></option>
@@ -92,11 +83,6 @@
       </div>
 
       <footer class="footer">
-        <ul class="nav nav-pills pull-left">
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Input Transaksi</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar">Daftar Barang</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/trx">Transaksi Kuota</a></li>
-        </ul>
       </footer>
 
     </div>

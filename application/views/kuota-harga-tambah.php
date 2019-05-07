@@ -24,33 +24,23 @@
   <body>
 
     <div class="">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-left">
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>">Utama</a></li>
-            <li role="presentation" class="active"><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Kuota</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atm">ATM</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atk">ATK</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/foto_copy">Foto - Copy</a></li>
-          </ul>
-        </nav>
-      </div>
+
+      <?php $this->load->view('menu')?>
 
       <div class="row marketing">
         <div class="col-lg-12">
             <p>Tambah Daftar Harga</p>
-
-            <div class="form-group">
-                <p>Harga Jual</p>
-                <input type="number" class="harga" name="harga" >
-            </div>
             <div class="form-group">
                 <p>Harga Beli</p>
                 <input type="number" class="harga_beli" name="harga_beli" >
             </div>
             <div class="form-group">
-                <p>Margin</p>
+                <p>Margin/Keuntungan</p>
                 <input type="number" class="margin" name="margin" >
+            </div>
+            <div class="form-group">
+                <p>Harga Jual</p>
+                <input type="number" class="harga" name="harga" >
             </div>
             <div class="form-group">
                 <button class="btn btn-primary simpan">Simpan</button>
@@ -58,24 +48,15 @@
                     loading ...
                 </div>
             </div>
-
-            <div class="form-group">
-            <a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar_tambah" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> tambah daftar barang</a>
-            </div>
-
             <div class="notif_status">
             </div>
-    
+            <div class="form-group">
+              <a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar_tambah" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> tambah daftar barang</a>
+            </div>
         </div>
-
       </div>
 
       <footer class="footer">
-        <ul class="nav nav-pills pull-left">
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Input Transaksi</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar">Daftar Barang</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/trx">Transaksi Kuota</a></li>
-        </ul>
       </footer>
 
     </div>
@@ -102,7 +83,7 @@
                     if(rst.status != 'error'){   
                         $(".notif_status").html("<div class=\"alert alert-success\" role=\"alert\"><span data-feather=\"info\"></span> Data Berhasil disimpan</div>");
                     } else {
-                        $(".notif_status").html("<div class=\"alert alert-danger\" role=\"alert\"><span data-feather=\"info\"></span> Data Gagal disimpan</div>");
+                        $(".notif_status").html("<div class=\"alert alert-danger\" role=\"alert\"><span data-feather=\"info\"></span> Data Gagal disimpan silahkan cek setiap data yang diinputkan</div>");
                     }
                     $(".loading_save").hide();
                 }

@@ -24,17 +24,8 @@
   <body>
 
     <div class="">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-left">
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>">Utama</a></li>
-            <li role="presentation" class="active"><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Kuota</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atm">ATM</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atk">ATK</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/foto_copy">Foto - Copy</a></li>
-          </ul>
-        </nav>
-      </div>
+
+      <?php $this->load->view('menu')?>
 
       <div class="row marketing">
         <div class="col-lg-12">
@@ -45,12 +36,13 @@
                     <input type="input" class="nama" name="nama" require>
                 </div>
                 <div class="form-group">
-                    <p>kadaluarsa</p>
-                    <input type="date" class="kadaluarsa" name="kadaluarsa" require>
-                </div>
-                <div class="form-group">
                     <p>Stock</p>
                     <input type="input" class="stock" name="stock" require>
+                </div>
+
+                <div class="form-group">
+                    <p>kadaluarsa</p>
+                    <input type="date" class="kadaluarsa" name="kadaluarsa" require>
                 </div>
                 <div class="form-group">
                     <p>Harga</p>
@@ -60,7 +52,7 @@
                         <?php } ?>
                     </select>
 
-                    <a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/harga_tambah" class="btn btn-primary  btn-xs"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> tambah data harga</a>
+                    <a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/harga_tambah" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Klik untuk menamtambah data harga</a>
                 </div>
                 <div class="form-group">
                 <button type="submit" class="btn btn-primary simpan">Simpan</button>
@@ -76,11 +68,6 @@
       </div>
 
       <footer class="footer">
-        <ul class="nav nav-pills pull-left">
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Input Transaksi</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar">Daftar Barang</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/trx">Transaksi Kuota</a></li>
-        </ul>
       </footer>
 
     </div>
@@ -97,11 +84,11 @@
             $.ajax({
                 url: '<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar_save',
                 type: 'POST',
-	            data: data,
+	              data: data,
                 dataType: 'JSON',
                 contentType:false,
-	            processData:false,
-	            success: function(rst){
+	              processData:false,
+	              success: function(rst){
 	                if(rst.status != 'error'){   
                         $(".notif_status").html("<div class=\"alert alert-success\" role=\"alert\"><span data-feather=\"info\"></span> Data Berhasil disimpan</div>");
                     } else {

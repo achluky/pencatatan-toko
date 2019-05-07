@@ -24,17 +24,8 @@
   <body>
 
     <div class="">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-left">
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>">Utama</a></li>
-            <li role="presentation" class="active"><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Kuota</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atm">ATM</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atk">ATK</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/foto_copy">Foto - Copy</a></li>
-          </ul>
-        </nav>
-      </div>
+
+      <?php $this->load->view('menu')?>
 
       <div class="row marketing">
         <div class="col-lg-12">
@@ -46,6 +37,12 @@
                 <input type="hidden" class="id_barang" name="id_barang" value="<?php echo $id_barang ?>" >
                 <input type="input" class="stock" name="stock" >
             </div>
+
+            <div class="form-group">
+                <p>kadaluarsa</p>
+                <input type="date" class="kadaluarsa" name="kadaluarsa" require>
+            </div>
+
             <div class="form-group">
             <button class="btn btn-primary simpan">Simpan</button>
                 <div class="loading_save">
@@ -60,11 +57,6 @@
       </div>
 
       <footer class="footer">
-        <ul class="nav nav-pills pull-left">
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Input Transaksi</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar">Daftar Barang</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/trx">Transaksi Kuota</a></li>
-        </ul>
       </footer>
 
     </div>
@@ -78,13 +70,14 @@
             var id_barang = $(".id_barang").val();
             var stock_old = $(".stock_old").val();
             var stock = $(".stock").val();
+            var kadaluarsa = $(".kadaluarsa").val();
             if(id_barang == '' || stock == ""){
                 $(".notif_status").html("<div class=\"alert alert-danger\" role=\"alert\"><span data-feather=\"info\"></span> Seluruh Data harus diisi</div>");
                 return;
             }
             $(".loading_save").show();
             $.ajax({
-                url: '<?php echo $this->config->item('base_url') ?>index.php/kuota/stock_save/'+id_barang+'/'+stock+'/'+stock_old,
+                url: '<?php echo $this->config->item('base_url') ?>index.php/kuota/stock_save/'+id_barang+'/'+stock+'/'+stock_old+'/'+kadaluarsa,
                 type: 'GET',
                 success: function(rst, status){
                     rst = $.parseJSON(rst);

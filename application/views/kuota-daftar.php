@@ -24,24 +24,16 @@
   <body>
 
     <div class="">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-left">
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>">Utama</a></li>
-            <li role="presentation" class="active"><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Kuota</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atm">ATM</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atk">ATK</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/foto_copy">Foto - Copy</a></li>
-          </ul>
-        </nav>
-      </div>
+
+      <?php $this->load->view('menu')?>
 
       <div class="row marketing">
         <div class="col-lg-12">
+            <p>Daftar Barang<p>
+            <hr/>
             <div class="form-group">
                  <a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar_tambah" class="btn btn-primary simpan"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tambah Data Barang</a>
             </div>
-            <p>Daftar Kuota</p>
             <div class="form-group">
                 <table class="table table-condensed daftar_barang" >
                     <thead>
@@ -74,11 +66,6 @@
       </div>
 
       <footer class="footer">
-        <ul class="nav nav-pills pull-left">
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Input Transaksi</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/daftar">Daftar Barang</a></li>
-            <li><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota/trx">Transaksi Kuota</a></li>
-        </ul>
       </footer>
 
     </div>

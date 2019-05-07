@@ -24,22 +24,12 @@
   <body>
 
     <div class="">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-left">
-            <li role="presentation" class="active"><a href="#">Utama</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/kuota">Kuota</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atm">ATM Mini</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/atk">ATK</a></li>
-            <li role="presentation"><a href="<?php echo $this->config->item('base_url') ?>index.php/foto_copy">Foto Copy</a></li>
-          </ul>
-        </nav>
-      </div>
+      
+    <?php $this->load->view('menu')?>
 
       <div class="row marketing">
         <div class="col-lg-12">
           <h4>Pencatatan Toko</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
         </div>
       </div>
 
